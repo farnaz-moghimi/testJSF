@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+    <title>vocation </title>
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:outputLabel value="" > <h1> vocation List</h1> </p:outputLabel>
+
+        <p:dataTable id="vocation"  var="vocation"
+                     value="#{vocationManagedBean.vocationList}" rowKey="#{vocation.id}" rows="10"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+
+            <p:column headerText="date">
+                <h:outputText value="#{vocation.date}" />
+            </p:column>
+            <p:column headerText="duration">
+                <h:outputText value="#{vocation.duration}" />
+            </p:column>
+            <p:column headerText="person">
+                <h:outputText value="#{vocation.person}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+        <p:outputLabel value="" ><h2>CREAT PERSON</h2> </p:outputLabel>
+        <hr />
+
+
+        <p:commandLink hreflang="creatperson.jsf"  value="CREAT PERSON">
+
+        </p:commandLink>
+
+
+
+        <p:panelGrid columns="2" layout="grid" styleClass="showcase-text-align-center">
+            <h:outputText value="date:"/>
+            <h:inputText value="#{vocationManagedBean.date}"  />
+            <h:outputText value="duration:"/>
+            <h:inputText value="#{vocationManagedBean.duration}"  />
+            <h:outputLabel value="person" var="nationalcode"/>
+            <h:inputText value="#{vocationManagedBean.person}" />
+            <f:facet name = "footer">
+                <p:growl id="messages"/>
+                <p:splitButton value="Save" action="#{personManagedBean.create}" update="messages" icon="pi pi-save" styleClass="ui-button-secondary">
+                    <p:menuitem value="Update" action="#{personManagedBean.create}" update="messages" icon="pi pi-refresh"/>
+                    <p:menuitem value="Delete" action="#{personManagedBean.create}" ajax="false" icon="pi pi-times"/>
+                    <p:divider />
+                </p:splitButton>
+            </f:facet>
+        </p:panelGrid>
+    </h:form>
+
+</h:body>
+
+</html>
